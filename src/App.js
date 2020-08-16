@@ -3,7 +3,7 @@ import './App.scss';
 
 function App() {
   return (
-    <form className="App">
+    <div className="App" onSubmit={() => console.log('submitted value!')}>
       <div className="form-field">
         <input id="Name" type="text" placeholder="Name" />
         <label htmlFor="Name">Name</label>
@@ -12,10 +12,6 @@ function App() {
       <div className="form-field">
         <input id="Salary" type="number" placeholder="Salary" />
         <label htmlFor="Salary">Salary</label>
-      </div>
-      <div className="form-field">
-        <input id="Password" type="password" placeholder="Password" />
-        <label htmlFor="Password">Password</label>
       </div>
       <div className="age">
         <div className="placeholder-container">
@@ -33,9 +29,11 @@ function App() {
           <input id="birthyear" type="number" placeholder="birthmonth" />
           <label htmlFor="birthyear">Year</label>
         </div>
-
       </div>
-    </form>
+      <div className="submit">
+        <button className="button">Submit</button>
+      </div>
+    </div>
   );
 }
 
