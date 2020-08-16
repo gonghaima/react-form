@@ -30,8 +30,8 @@ function App() {
           <label htmlFor="birthyear">Year</label>
         </div>
       </div>
-      <div className="submit">
-        <button className="button">Submit</button>
+      <div className="submit-field">
+        <button className="submit-button-disabled">Submit</button>
       </div>
     </div>
   );

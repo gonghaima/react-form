@@ -32,6 +32,21 @@
   top: 15px;
 }
 
+@mixin button-mix {
+  background-position: center;
+  transition: background 0.8s;
+  border: none;
+  border-radius: 2px;
+  padding: 12px 18px;
+  font-size: 16px;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: white;
+  background-color: #4476bd;
+  box-shadow: 0 0 4px #999;
+  outline: none;
+}
+
 .form-field {
   @include form-field-mix;
   width: 280px;
@@ -108,37 +123,31 @@ input:not(:placeholder-shown) {
   }
 }
 
-.submit{
+.submit-field {
   @include flex-center-mix;
   @include form-field-mix;
   margin-bottom: 25px;
   margin-top: 18px;
 }
 
-/* button effect */
-.button {
-  background-position: center;
-  transition: background 0.8s;
-}
-.button:hover {
+
+.submit-button:hover {
   background: #233c60 radial-gradient(circle, transparent 1%, #47a7f5 1%) center/15000%;
 }
-.button:active {
+.submit-button:active {
   background-color: #1f1f1f;
   background-size: 100%;
   transition: background 0s;
 }
 
 /* Button style */
-button {
-  border: none;
-  border-radius: 2px;
-  padding: 12px 18px;
-  font-size: 16px;
-  text-transform: uppercase;
-  cursor: pointer;
-  color: white;
-  background-color: #4476bd;
-  box-shadow: 0 0 4px #999;
-  outline: none;
+.submit-button {
+  @include button-mix;
+}
+
+.submit-button-disabled{
+  @include button-mix;
+  color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.12);
+  cursor: default;
 }
