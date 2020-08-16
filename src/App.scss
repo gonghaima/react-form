@@ -1,0 +1,109 @@
+@import './config.scss';
+
+.App {
+  background-color: $primary-bg-color;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}
+
+@mixin flex-center-mix {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin form-field-mix {
+  margin: 10px 0;
+  position: relative;
+}
+
+@mixin input-center-mix {
+  @include form-field-mix;
+  @include flex-center-mix;
+}
+
+@mixin placeholder-mix{
+  color: #aaa;
+  font-size: 14px;
+  top: 15px;
+}
+
+.form-field {
+  @include form-field-mix;
+  width: 350px;
+}
+input {
+  color: $primary-color;
+  background: transparent;
+  border: none;
+  border-bottom: solid 1px #ccc;
+  padding: 20px 2px 5px;
+  transition: padding 0.4s;
+  width: 80%;
+}
+input:placeholder-shown + label {
+  @include placeholder-mix;
+}
+input:focus + label,
+label {
+  color: #4476bd;
+  font-size: 12px;
+  pointer-events: none;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  transition: top 0.4s, left 0.4s, font-size 0.4s;
+}
+input::placeholder{
+  color: transparent;
+  display:none;
+}
+input:focus,
+input:not(:placeholder-shown) {
+  border-bottom: solid 2px #4476bd;
+  outline: none;
+}
+
+.helper-text{
+  position: relative;
+  min-height: 18px;
+  display: block;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #F44336;
+}
+
+.age{
+  @include form-field-mix;
+  width: 350px;
+  display: flex;
+  .date, .month, .year {
+    @include input-center-mix;
+    width: 40px;
+    margin: 10px 5px;
+    input {
+      width: 100%;
+    }
+    label {
+      width: 80%;
+    }
+  }
+  .month {
+    width: 55px;
+  }
+  .year{
+    width: 60px;
+  }
+  .label{
+    @include placeholder-mix;
+  }
+  .placeholder-container{
+    @include form-field-mix;
+    margin: 10px 15px 10px 0px;
+    width: 88px;
+  }
+}
