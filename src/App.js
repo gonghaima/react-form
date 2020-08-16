@@ -1,25 +1,41 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <form className="App">
+      <div className="form-field">
+        <input id="Name" type="text" placeholder="Name" />
+        <label htmlFor="Name">Name</label>
+        <span className="helper-text" data-error="wrong" data-success="right">* Name is required</span>
+      </div>
+      <div className="form-field">
+        <input id="Salary" type="number" placeholder="Salary" />
+        <label htmlFor="Salary">Salary</label>
+      </div>
+      <div className="form-field">
+        <input id="Password" type="password" placeholder="Password" />
+        <label htmlFor="Password">Password</label>
+      </div>
+      <div className="age">
+        <div className="placeholder-container">
+          <label className="label">Date of Birth</label>
+        </div>
+        <div className="date">
+          <input id="birthdate" type="number" pattern="\d*" maxLength="2" placeholder="birthdate" />
+          <label htmlFor="birthdate">Day</label>
+        </div>
+        <div className="month">
+          <input id="birthmonth" type="number" placeholder="birthmonth" />
+          <label htmlFor="birthmonth">Month</label>
+        </div>
+        <div className="year">
+          <input id="birthyear" type="number" placeholder="birthmonth" />
+          <label htmlFor="birthyear">Year</label>
+        </div>
+
+      </div>
+    </form>
   );
 }
 
