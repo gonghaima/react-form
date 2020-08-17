@@ -30,8 +30,14 @@ function App() {
           <label htmlFor="birthyear">Year</label>
         </div>
       </div>
+      <span className="helper-text-success">User: 3849172 has been created</span>
       <div className="submit-field">
         <button className="submit-button-disabled">Submit</button>
+        <div className="progress-wrapper">
+          <svg class="progress-svg" viewBox="22 22 44 44">
+            <circle class="progress-circle" cx="44" cy="44" r="20.2" fill="none" stroke-width="3.6"></circle>
+          </svg>
+        </div>
       </div>
     </div>
   );

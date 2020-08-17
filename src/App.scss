@@ -47,6 +47,15 @@
   outline: none;
 }
 
+@mixin helper-text-mix {
+  position: relative;
+  min-height: 18px;
+  display: block;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #F44336;
+}
+
 .form-field {
   @include form-field-mix;
   width: 280px;
@@ -83,13 +92,18 @@ input:not(:placeholder-shown) {
   outline: none;
 }
 
+// input class as disabled class, need combine with disabled attribute
+input.disabled{
+  color: #999a99;
+  border-bottom: dotted 2px #999a99;
+}
+
 .helper-text{
-  position: relative;
-  min-height: 18px;
-  display: block;
-  font-size: 12px;
-  line-height: 1.6;
-  color: #F44336;
+  @include helper-text-mix;
+}
+.helper-text-success{
+  @include helper-text-mix;
+  color: #4caf50;
 }
 
 .age{
@@ -150,4 +164,52 @@ input:not(:placeholder-shown) {
   color: rgba(255, 255, 255, 0.3);
   background-color: rgba(255, 255, 255, 0.12);
   cursor: default;
+}
+
+/* progress */
+
+.progress-wrapper{
+  width: 24px;
+  height: 24px;
+  top: 50%;
+  left: 50%;
+  color: #4476bd;
+  position: absolute;
+  margin-top: -12px;
+  margin-left: -12px;
+  animation: keyframes-circular-rotate 1.4s linear infinite;
+  display: inline-block;
+}
+
+
+.progress-svg {
+  display: block;
+}
+.progress-circle {
+  stroke: currentColor;
+  animation: keyframes-circular-dash 1.4s ease-in-out infinite;
+  stroke-dasharray: 80px, 200px;
+  stroke-dashoffset: 0px;
+}
+@keyframes keyframes-circular-rotate {
+  0% {
+    transform-origin: 50% 50%;
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes keyframes-circular-dash {
+  0% {
+    stroke-dasharray: 1px, 200px;
+    stroke-dashoffset: 0px;
+  }
+  50% {
+    stroke-dasharray: 100px, 200px;
+    stroke-dashoffset: -15px;
+  }
+  100% {
+    stroke-dasharray: 100px, 200px;
+    stroke-dashoffset: -125px;
+  }
 }
