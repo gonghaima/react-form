@@ -110,7 +110,7 @@ input.disabled{
   @include form-field-mix;
   width: 280px;
   display: flex;
-  .date, .month, .year {
+  .date, .month, .year, .split {
     @include input-center-mix;
     width: 40px;
     margin: 10px 5px;
@@ -121,14 +121,23 @@ input.disabled{
       width: 80%;
     }
   }
+  input{
+    text-align: center;
+  }
   .month {
     width: 55px;
   }
   .year{
-    width: 60px;
+    width: 50px;
+  }
+  .split{
+    margin: 0;
+    width: 6px;
+    color: #ccc;
   }
   .label{
     @include placeholder-mix;
+    width: 100%;
   }
   .placeholder-container{
     @include form-field-mix;
