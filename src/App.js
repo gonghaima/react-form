@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.scss';
 
 const STATUS = { INITIAL: 0, INVALID: 1, VALID: 2, LOADING: 3 };
@@ -12,7 +12,6 @@ function App() {
   const onChange = (e, type) => {
     // debugger;
     setFormValues({ ...formValues, ...{ [type]: e.target.value } });
-    name && salary && day && month && year && setStatus(STATUS.VALID);
   }
 
   const onKeyDown = (e) => {
@@ -23,7 +22,7 @@ function App() {
 
   const enableSubmit = stats === STATUS.VALID;
 
-  const handleSubmit = e => {
+  let handleSubmit = e => {
     e.preventDefault();
     console.log(e);
     setStatus(STATUS.LOADING);
@@ -32,6 +31,13 @@ function App() {
       setFormValues(INITIAL_FORM_VALUES);
     }, 3000);
   }
+
+  useEffect(() => {
+    if (stats === STATUS.LOADING) return;
+    name && salary && day && month && year ? setStatus(STATUS.VALID) : setStatus(STATUS.INVALID);
+  }, [stats, formValues, name, salary, day, month, year]);
+
+
   return (
     <form className="App" onSubmit={handleSubmit}>
       <div className="form-field">
@@ -65,7 +71,7 @@ function App() {
       <span className="helper-text-success">User: 3849172 has been created</span>
       <div className="submit-field">
         {/* <button className="submit-button-disabled">Submit</button> */}
-        <button className={enableSubmit ? "submit-button" : "submit-button-disabled"} disabled={enableSubmit ? false : true}>Submit</button>
+        <button className={(stats === STATUS.VALID) ? "submit-button" : "submit-button-disabled"} disabled={(stats === STATUS.VALID) ? false : true}>Submit</button>
         {stats === STATUS.LOADING && <div className="progress-wrapper">
           <svg className="progress-svg" viewBox="22 22 44 44">
             <circle className="progress-circle" cx="44" cy="44" r="20.2" fill="none" strokeWidth="3.6"></circle>
@@ -74,7 +80,7 @@ function App() {
       </div>
       {JSON.stringify(formValues)}
       {JSON.stringify(stats)}
-      {JSON.stringify(enableSubmit)}
+      {JSON.stringify((stats === STATUS.VALID))}
     </form>
   );
 }
