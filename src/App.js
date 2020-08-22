@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import TextField from './components/TextField';
 import './App.scss';
 
 const STATUS = { INITIAL: 0, INVALID: 1, VALID: 2, LOADING: 3 };
@@ -10,7 +11,7 @@ function App() {
   const { name, salary, day, month, year } = formValues;
 
   const onChange = (e, type) => {
-    // debugger;
+    debugger;
     setFormValues({ ...formValues, ...{ [type]: e.target.value } });
   }
 
@@ -19,8 +20,6 @@ function App() {
       e.preventDefault();
     }
   }
-
-  const enableSubmit = stats === STATUS.VALID;
 
   let handleSubmit = e => {
     e.preventDefault();
@@ -40,15 +39,20 @@ function App() {
 
   return (
     <form className="App" onSubmit={handleSubmit}>
-      <div className="form-field">
+      {/* <div className="form-field">
         <input id="Name" type="text" value={name} onChange={(e) => onChange(e, 'name')} className={stats === STATUS.LOADING ? "disabled" : null} disabled={stats === STATUS.LOADING} placeholder="Name" />
         <label htmlFor="Name">Name</label>
-        {/* <span className="helper-text" data-error="wrong" data-success="right">* Name is required</span> */}
-      </div>
-      <div className="form-field">
+      </div> */}
+      <TextField fieldName='Name' type='text' value={name} onChange={onChange} disabled={stats === STATUS.LOADING} />
+
+
+      <TextField fieldName='Salary' type='number' value={salary} onChange={onChange} onKeyDown={onKeyDown} disabled={stats === STATUS.LOADING} />
+
+      {/* <div className="form-field">
         <input id="Salary" type="number" value={salary} onChange={(e) => onChange(e, 'salary')} onKeyDown={e => onKeyDown(e)} placeholder="Salary" className={stats === STATUS.LOADING ? "disabled" : null} disabled={stats === STATUS.LOADING} />
         <label htmlFor="Salary">Salary</label>
-      </div>
+      </div> */}
+
       <div className="age">
         <div className="placeholder-container">
           <label className="label">Date of Birth</label>
