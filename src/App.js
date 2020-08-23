@@ -21,6 +21,12 @@ function App() {
     }
   }
 
+  const vd = (e) => {
+    const isValid = e.target.value.length <= 2;
+    debugger;
+    return isValid;
+  }
+
   let handleSubmit = e => {
     e.preventDefault();
     console.log(e);
@@ -44,23 +50,21 @@ function App() {
         <label htmlFor="Name">Name</label>
       </div> */}
       <TextField fieldName='Name' type='text' value={name} onChange={onChange} disabled={stats === STATUS.LOADING} />
-
-
       <TextField fieldName='Salary' type='number' value={salary} onChange={onChange} onKeyDown={onKeyDown} disabled={stats === STATUS.LOADING} />
-
-      {/* <div className="form-field">
-        <input id="Salary" type="number" value={salary} onChange={(e) => onChange(e, 'salary')} onKeyDown={e => onKeyDown(e)} placeholder="Salary" className={stats === STATUS.LOADING ? "disabled" : null} disabled={stats === STATUS.LOADING} />
-        <label htmlFor="Salary">Salary</label>
-      </div> */}
-
       <div className="age">
         <div className="placeholder-container">
           <label className="label">Date of Birth</label>
         </div>
-        <div className="date">
-          <input id="birthdate" type="number" value={day} onChange={(e) => (e.target.value.length === 3) ? false : onChange(e, 'day')} className={stats === STATUS.LOADING ? "disabled" : null} disabled={stats === STATUS.LOADING} onKeyDown={e => onKeyDown(e)} pattern="\d*" maxLength="2" placeholder="day" autoComplete="off" />
-          <label htmlFor="birthdate">Day</label>
-        </div>
+        <TextField fieldWrapper="day" fieldName='Day' type='number'
+          value={day}
+          onChange={onChange}
+          validate={(e) => e.target.value.length <= 2}
+          onKeyDown={onKeyDown}
+          pattern='\d*'
+          maxLength='2'
+          disabled={stats === STATUS.LOADING} />
+
+
         <div className="split">/</div>
         <div className="month">
           <input id="birthmonth" type="number" value={month} onChange={(e) => (e.target.value.length === 3) ? false : onChange(e, 'month')} placeholder="month" className={stats === STATUS.LOADING ? "disabled" : null} disabled={stats === STATUS.LOADING} onKeyDown={e => onKeyDown(e)} />
