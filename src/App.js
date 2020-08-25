@@ -63,13 +63,15 @@ function App() {
           pattern='\d*'
           maxLength='2'
           disabled={stats === STATUS.LOADING} />
-
-
         <div className="split">/</div>
-        <div className="month">
-          <input id="birthmonth" type="number" value={month} onChange={(e) => (e.target.value.length === 3) ? false : onChange(e, 'month')} placeholder="month" className={stats === STATUS.LOADING ? "disabled" : null} disabled={stats === STATUS.LOADING} onKeyDown={e => onKeyDown(e)} />
-          <label htmlFor="birthmonth">Month</label>
-        </div>
+        <TextField fieldWrapper="month" fieldName='Month' type='number'
+          value={month}
+          onChange={onChange}
+          validate={(e) => (e.target.value.length <= 4)}
+          onKeyDown={onKeyDown}
+          pattern='\d*'
+          maxLength='4'
+          disabled={stats === STATUS.LOADING} />
         <div className="split">/</div>
         <div className="year">
           <input id="birthyear" type="number" value={year} onChange={(e) => (e.target.value.length === 5) ? false : onChange(e, 'year')} placeholder="year" className={stats === STATUS.LOADING ? "disabled" : null} disabled={stats === STATUS.LOADING} onKeyDown={e => onKeyDown(e)} />
