@@ -45,10 +45,6 @@ function App() {
 
   return (
     <form className="App" onSubmit={handleSubmit}>
-      {/* <div className="form-field">
-        <input id="Name" type="text" value={name} onChange={(e) => onChange(e, 'name')} className={stats === STATUS.LOADING ? "disabled" : null} disabled={stats === STATUS.LOADING} placeholder="Name" />
-        <label htmlFor="Name">Name</label>
-      </div> */}
       <TextField fieldName='Name' type='text' value={name} onChange={onChange} disabled={stats === STATUS.LOADING} />
       <TextField fieldName='Salary' type='number' value={salary} onChange={onChange} onKeyDown={onKeyDown} disabled={stats === STATUS.LOADING} />
       <div className="age">
@@ -67,20 +63,23 @@ function App() {
         <TextField fieldWrapper="month" fieldName='Month' type='number'
           value={month}
           onChange={onChange}
+          validate={(e) => (e.target.value.length <= 2)}
+          onKeyDown={onKeyDown}
+          pattern='\d*'
+          maxLength='2'
+          disabled={stats === STATUS.LOADING} />
+        <div className="split">/</div>
+        <TextField fieldWrapper="year" fieldName='Year' type='number'
+          value={year}
+          onChange={onChange}
           validate={(e) => (e.target.value.length <= 4)}
           onKeyDown={onKeyDown}
           pattern='\d*'
           maxLength='4'
           disabled={stats === STATUS.LOADING} />
-        <div className="split">/</div>
-        <div className="year">
-          <input id="birthyear" type="number" value={year} onChange={(e) => (e.target.value.length === 5) ? false : onChange(e, 'year')} placeholder="year" className={stats === STATUS.LOADING ? "disabled" : null} disabled={stats === STATUS.LOADING} onKeyDown={e => onKeyDown(e)} />
-          <label htmlFor="birthyear">Year</label>
-        </div>
       </div>
       <span className="helper-text-success">User: 3849172 has been created</span>
       <div className="submit-field">
-        {/* <button className="submit-button-disabled">Submit</button> */}
         <button className={(stats === STATUS.VALID) ? "submit-button" : "submit-button-disabled"} disabled={(stats === STATUS.VALID) ? false : true}>Submit</button>
         {stats === STATUS.LOADING && <div className="progress-wrapper">
           <svg className="progress-svg" viewBox="22 22 44 44">
