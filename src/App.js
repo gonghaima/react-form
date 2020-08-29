@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import TextField from './components/TextField';
+import AgeField from './components/AgeField';
 import './App.scss';
 
 const STATUS = { INITIAL: 0, INVALID: 1, VALID: 2, LOADING: 3 };
@@ -11,7 +12,7 @@ function App() {
   const { name, salary, day, month, year } = formValues;
 
   const onChange = (e, type) => {
-    debugger;
+    // debugger;
     setFormValues({ ...formValues, ...{ [type]: e.target.value } });
   }
 
@@ -47,37 +48,7 @@ function App() {
     <form className="App" onSubmit={handleSubmit}>
       <TextField fieldName='Name' type='text' value={name} onChange={onChange} disabled={stats === STATUS.LOADING} />
       <TextField fieldName='Salary' type='number' value={salary} onChange={onChange} onKeyDown={onKeyDown} disabled={stats === STATUS.LOADING} />
-      <div className="age">
-        <div className="placeholder-container">
-          <label className="label">Date of Birth</label>
-        </div>
-        <TextField fieldWrapper="day" fieldName='Day' type='number'
-          value={day}
-          onChange={onChange}
-          validate={(e) => e.target.value.length <= 2}
-          onKeyDown={onKeyDown}
-          pattern='\d*'
-          maxLength='2'
-          disabled={stats === STATUS.LOADING} />
-        <div className="split">/</div>
-        <TextField fieldWrapper="month" fieldName='Month' type='number'
-          value={month}
-          onChange={onChange}
-          validate={(e) => (e.target.value.length <= 2)}
-          onKeyDown={onKeyDown}
-          pattern='\d*'
-          maxLength='2'
-          disabled={stats === STATUS.LOADING} />
-        <div className="split">/</div>
-        <TextField fieldWrapper="year" fieldName='Year' type='number'
-          value={year}
-          onChange={onChange}
-          validate={(e) => (e.target.value.length <= 4)}
-          onKeyDown={onKeyDown}
-          pattern='\d*'
-          maxLength='4'
-          disabled={stats === STATUS.LOADING} />
-      </div>
+      <AgeField onChange={onChange} onKeyDown={onKeyDown} day={day} month={month} year={year} stats={stats} STATUS={STATUS} />
       <span className="helper-text-success">User: 3849172 has been created</span>
       <div className="submit-field">
         <button className={(stats === STATUS.VALID) ? "submit-button" : "submit-button-disabled"} disabled={(stats === STATUS.VALID) ? false : true}>Submit</button>
