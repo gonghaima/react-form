@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import TextField from './components/TextField';
 import AgeField from './components/AgeField';
+import SubmitButton from './components/SubmitButton';
 import './App.scss';
 
 const STATUS = { INITIAL: 0, INVALID: 1, VALID: 2, LOADING: 3 };
@@ -22,13 +23,7 @@ function App() {
     }
   }
 
-  const vd = (e) => {
-    const isValid = e.target.value.length <= 2;
-    debugger;
-    return isValid;
-  }
-
-  let handleSubmit = e => {
+  const handleSubmit = e => {
     e.preventDefault();
     console.log(e);
     setStatus(STATUS.LOADING);
@@ -50,14 +45,7 @@ function App() {
       <TextField fieldName='Salary' type='number' value={salary} onChange={onChange} onKeyDown={onKeyDown} disabled={stats === STATUS.LOADING} />
       <AgeField onChange={onChange} onKeyDown={onKeyDown} day={day} month={month} year={year} stats={stats} STATUS={STATUS} />
       <span className="helper-text-success">User: 3849172 has been created</span>
-      <div className="submit-field">
-        <button className={(stats === STATUS.VALID) ? "submit-button" : "submit-button-disabled"} disabled={(stats === STATUS.VALID) ? false : true}>Submit</button>
-        {stats === STATUS.LOADING && <div className="progress-wrapper">
-          <svg className="progress-svg" viewBox="22 22 44 44">
-            <circle className="progress-circle" cx="44" cy="44" r="20.2" fill="none" strokeWidth="3.6"></circle>
-          </svg>
-        </div>}
-      </div>
+      <SubmitButton stats={stats} STATUS={STATUS} />
       {JSON.stringify(formValues)}
       {JSON.stringify(stats)}
       {JSON.stringify((stats === STATUS.VALID))}
