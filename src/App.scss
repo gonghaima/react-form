@@ -103,7 +103,11 @@ input.disabled {
 }
 .helper-text-success{
   @include helper-text-mix;
-  color: #4caf50;
+  color:#4caf50;
+}
+.helper-text-failure{
+  @include helper-text-mix;
+  color:#f44336;
 }
 
 .age{

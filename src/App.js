@@ -5,10 +5,12 @@ import SubmitButton from './components/SubmitButton';
 import './App.scss';
 
 const STATUS = { INITIAL: 0, INVALID: 1, VALID: 2, LOADING: 3 };
+const MSG_STATUS = { INITIAL: 0, SUCCESS: 1, FAILURE: 2 };
 const INITIAL_FORM_VALUES = { name: "", salary: "", day: "", month: "", year: "" };
 
 function App() {
   const [stats, setStatus] = useState(STATUS.INITIAL);
+  const [msgStats, setMsgStatus] = useState(MSG_STATUS.INITIAL);
   const [formValues, setFormValues] = useState(INITIAL_FORM_VALUES);
   const { name, salary, day, month, year } = formValues;
 
@@ -45,6 +47,7 @@ function App() {
       <TextField fieldName='Salary' type='number' value={salary} onChange={onChange} onKeyDown={onKeyDown} disabled={stats === STATUS.LOADING} />
       <AgeField onChange={onChange} onKeyDown={onKeyDown} day={day} month={month} year={year} stats={stats} STATUS={STATUS} />
       <span className="helper-text-success">User: 3849172 has been created</span>
+      <span className="helper-text-failure">Something went wrong. Please try again.</span>
       <SubmitButton stats={stats} STATUS={STATUS} />
       {JSON.stringify(formValues)}
       {JSON.stringify(stats)}
