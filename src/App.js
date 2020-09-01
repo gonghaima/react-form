@@ -48,9 +48,6 @@ function App() {
       <AgeField onChange={onChange} onKeyDown={onKeyDown} day={day} month={month} year={year} stats={stats} STATUS={STATUS} />
       <Alert msgStats={msgStats} MSG_STATUS={MSG_STATUS} />
       <SubmitButton stats={stats} STATUS={STATUS} />
-      {JSON.stringify(formValues)}
-      {JSON.stringify(stats)}
-      {JSON.stringify((stats === STATUS.VALID))}
     </form>
   );
 }
