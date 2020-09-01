@@ -15,7 +15,6 @@ function App() {
   const { name, salary, day, month, year } = formValues;
 
   const onChange = (e, type) => {
-    // debugger;
     setFormValues({ ...formValues, ...{ [type]: e.target.value } });
   }
 
@@ -31,6 +30,7 @@ function App() {
     setStatus(STATUS.LOADING);
     setTimeout(() => {
       setStatus(STATUS.INITIAL);
+      setMsgStatus(MSG_STATUS.SUCCESS);
       setFormValues(INITIAL_FORM_VALUES);
     }, 3000);
   }
@@ -46,8 +46,8 @@ function App() {
       <TextField fieldName='Name' type='text' value={name} onChange={onChange} disabled={stats === STATUS.LOADING} />
       <TextField fieldName='Salary' type='number' value={salary} onChange={onChange} onKeyDown={onKeyDown} disabled={stats === STATUS.LOADING} />
       <AgeField onChange={onChange} onKeyDown={onKeyDown} day={day} month={month} year={year} stats={stats} STATUS={STATUS} />
-      <span className="helper-text-success">User: 3849172 has been created</span>
-      <span className="helper-text-failure">Something went wrong. Please try again.</span>
+      {msgStats === MSG_STATUS.SUCCESS && <span className="helper-text-success">User: 3849172 has been created</span>}
+      {msgStats === MSG_STATUS.FAILURE && <span className="helper-text-failure">Something went wrong. Please try again.</span>}
       <SubmitButton stats={stats} STATUS={STATUS} />
       {JSON.stringify(formValues)}
       {JSON.stringify(stats)}
