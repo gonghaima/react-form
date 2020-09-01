@@ -3,11 +3,8 @@ import TextField from './components/TextField';
 import AgeField from './components/AgeField';
 import SubmitButton from './components/SubmitButton';
 import Alert from './components/Alert';
+import { STATUS, MSG_STATUS, INITIAL_FORM_VALUES } from './constants';
 import './App.scss';
-
-const STATUS = { INITIAL: 0, INVALID: 1, VALID: 2, LOADING: 3 };
-const MSG_STATUS = { INITIAL: 0, SUCCESS: 1, FAILURE: 2 };
-const INITIAL_FORM_VALUES = { name: "", salary: "", day: "", month: "", year: "" };
 
 function App() {
   const [stats, setStatus] = useState(STATUS.INITIAL);
@@ -38,7 +35,7 @@ function App() {
   useEffect(() => {
     if (stats === STATUS.LOADING) return;
     name && salary && day && month && year ? setStatus(STATUS.VALID) : setStatus(STATUS.INVALID);
-  }, [stats, formValues, name, salary, day, month, year]);
+  }, [stats, msgStats, formValues, name, salary, day, month, year]);
 
 
   return (

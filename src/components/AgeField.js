@@ -1,7 +1,8 @@
 import React from 'react';
 import TextField from './TextField';
+import { STATUS } from '../constants'
 
-export default ({ onChange, onKeyDown = () => { }, day, month, year, stats, STATUS }) => {
+export default ({ onChange, onKeyDown = () => { }, day, month, year, stats }) => {
     return <div className="age">
         <div className="placeholder-container">
             <label className="label">Date of Birth</label>

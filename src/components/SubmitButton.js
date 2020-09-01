@@ -1,6 +1,7 @@
 import React from 'react';
+import { STATUS } from '../constants';
 
-export default ({ stats, STATUS }) => {
+export default ({ stats }) => {
     return <div className="submit-field">
         <button className={(stats === STATUS.VALID) ? "submit-button" : "submit-button-disabled"} disabled={(stats === STATUS.VALID) ? false : true}>Submit</button>
         {stats === STATUS.LOADING && <div className="progress-wrapper">
