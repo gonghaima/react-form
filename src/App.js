@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import TextField from './components/TextField';
 import AgeField from './components/AgeField';
 import SubmitButton from './components/SubmitButton';
+import Alert from './components/Alert';
 import './App.scss';
 
 const STATUS = { INITIAL: 0, INVALID: 1, VALID: 2, LOADING: 3 };
@@ -26,7 +27,6 @@ function App() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(e);
     setStatus(STATUS.LOADING);
     setTimeout(() => {
       setStatus(STATUS.INITIAL);
@@ -46,8 +46,7 @@ function App() {
       <TextField fieldName='Name' type='text' value={name} onChange={onChange} disabled={stats === STATUS.LOADING} />
       <TextField fieldName='Salary' type='number' value={salary} onChange={onChange} onKeyDown={onKeyDown} disabled={stats === STATUS.LOADING} />
       <AgeField onChange={onChange} onKeyDown={onKeyDown} day={day} month={month} year={year} stats={stats} STATUS={STATUS} />
-      {msgStats === MSG_STATUS.SUCCESS && <span className="helper-text-success">User: 3849172 has been created</span>}
-      {msgStats === MSG_STATUS.FAILURE && <span className="helper-text-failure">Something went wrong. Please try again.</span>}
+      <Alert msgStats={msgStats} MSG_STATUS={MSG_STATUS} />
       <SubmitButton stats={stats} STATUS={STATUS} />
       {JSON.stringify(formValues)}
       {JSON.stringify(stats)}
