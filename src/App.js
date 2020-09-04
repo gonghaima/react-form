@@ -43,7 +43,7 @@ function App() {
       <TextField fieldName='Name' type='text' value={name} onChange={onChange} disabled={stats === STATUS.LOADING} />
       <TextField fieldName='Salary' type='number' value={salary} onChange={onChange} onKeyDown={onKeyDown} disabled={stats === STATUS.LOADING} />
       <AgeField onChange={onChange} onKeyDown={onKeyDown} day={day} month={month} year={year} stats={stats} STATUS={STATUS} />
-      <Alert msgStats={msgStats} MSG_STATUS={MSG_STATUS} />
+      <Alert msgStats={msgStats} />
       <SubmitButton stats={stats} STATUS={STATUS} />
     </form>
   );
