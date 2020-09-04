@@ -1,6 +1,6 @@
 import React from 'react';
-import TextField from './TextField';
-import { STATUS } from '../constants'
+import TextField from '../TextField';
+import { STATUS } from '../../constants'
 
 export default ({ onChange, onKeyDown = () => { }, day, month, year, stats }) => {
     return <div className="age">
