@@ -1,6 +1,7 @@
 import React from 'react';
 import TextField from '../TextField';
-import { STATUS } from '../../constants'
+import { STATUS } from '../../constants';
+import { validateDay, validateMonth, validateYear } from './validation';
 
 export default ({ onChange, onKeyDown = () => { }, day, month, year, stats }) => {
     return <div className="age">
@@ -10,7 +11,7 @@ export default ({ onChange, onKeyDown = () => { }, day, month, year, stats }) =>
         <TextField fieldWrapper="day" fieldName='Day' type='number'
             value={day}
             onChange={onChange}
-            validate={(e) => e.target.value.length <= 2}
+            validate={validateDay}
             onKeyDown={onKeyDown}
             pattern='\d*'
             maxLength='2'
@@ -19,7 +20,7 @@ export default ({ onChange, onKeyDown = () => { }, day, month, year, stats }) =>
         <TextField fieldWrapper="month" fieldName='Month' type='number'
             value={month}
             onChange={onChange}
-            validate={(e) => (e.target.value.length <= 2)}
+            validate={validateMonth}
             onKeyDown={onKeyDown}
             pattern='\d*'
             maxLength='2'
@@ -28,7 +29,7 @@ export default ({ onChange, onKeyDown = () => { }, day, month, year, stats }) =>
         <TextField fieldWrapper="year" fieldName='Year' type='number'
             value={year}
             onChange={onChange}
-            validate={(e) => (e.target.value.length <= 4)}
+            validate={validateYear}
             onKeyDown={onKeyDown}
             pattern='\d*'
             maxLength='4'
