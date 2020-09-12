@@ -8,7 +8,7 @@ import './App.scss';
 
 function App() {
   const [stats, setStatus] = useState(STATUS.INITIAL);
-  const [msgStats, setMsgStatus] = useState(MSG_STATUS.INITIAL);
+  const [msgStats, setMsgStatus] = useState({ status: MSG_STATUS.INITIAL, message: null });
   const [formValues, setFormValues] = useState(INITIAL_FORM_VALUES);
   const { name, salary, day, month, year } = formValues;
 
@@ -27,7 +27,7 @@ function App() {
     setStatus(STATUS.LOADING);
     setTimeout(() => {
       setStatus(STATUS.INITIAL);
-      setMsgStatus(MSG_STATUS.SUCCESS);
+      setMsgStatus({ status: MSG_STATUS.SUCCESS, message: `User: ${Math.floor(Math.random() * 100)} has been created successfully.` });
       setFormValues(INITIAL_FORM_VALUES);
     }, 3000);
   }
