@@ -8,7 +8,7 @@ test('AgeField component should be rendered without error', () => {
         <AgeField
             onChange={() => { }}
             onKeyDown={() => { }}
-            day={3}
+            day={{ day: 3 }}
             month={{ month: 11 }}
             year={{ year: 1988 }}
             stats={{ stats: 2 }}
