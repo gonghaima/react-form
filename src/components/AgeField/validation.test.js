@@ -35,4 +35,20 @@ test('validation should validate day, month, and year as expected', () => {
     const invalidMonth_1 = validateMonth(evtMonth);
     expect(invalidMonth_1).toEqual(false);
 
+    /******************
+     * Year validation *
+     ******************/
+
+    const evtYear = { target: { value: "1990" } };
+    const validYear = validateYear(evtYear);
+    expect(validYear).toEqual(true);
+
+    evtYear.target.value = "99";
+    const invalidYear = validateYear(evtYear);
+    expect(invalidYear).toEqual(true);
+
+    evtYear.target.value = "00134";
+    const invalidYear_1 = validateYear(evtYear);
+    expect(invalidYear_1).toEqual(false);
+
 });
