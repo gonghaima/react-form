@@ -2,7 +2,6 @@ import React from 'react';
 import { MSG_STATUS } from '../../constants';
 
 export default ({ msgStats }) => {
-    debugger;
     switch (msgStats.status) {
         case MSG_STATUS.SUCCESS:
             return <span data-testid="alert-success" className="helper-text-success">{msgStats.message}</span>
